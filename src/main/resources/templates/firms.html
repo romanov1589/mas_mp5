@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <title>Firms</title>
+</head>
+<body ng-app="app">
+<div class="container" ng-controller="FirmsController">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="lead">List of Addresses:</span>
+            <div class="select-group pull-right">
+                <select ng-model="selectedAddress" class="form-control" name="selectedAddress">
+                    <option ng-repeat="address in addresses">{{address.addressId + '-' + address.streetName + '-'
+                        + address.streetNumber + '-' + address.cityName}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="lead">Firms List</span>
+            <div class="btn-group pull-right">
+                <a th:href="@{/addfirm}" class="btn btn-success">Add new firm</a>
+                <a th:href="@{/alladdresses}" class="btn btn-success">Addresses</a>
+            </div>
+        </div>
+        <div class="listcontainer">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>NIP</th>
+                    <th>Regon</th>
+                    <th>Address</th>
+                </tr>
+                <tr ng-repeat="firm in firms">
+                    <td>{{firm.firmId}}</td>
+                    <td>{{firm.name}}</td>
+                    <td>{{firm.nip}}</td>
+                    <td>{{firm.regon}}</td>
+                    <td>{{firm.address.streetName + ' ' + firm.address.streetNumber + ', ' +
+                        firm.address.cityName + ' ' + firm.address.postalCode}}</td>
+                    <td>
+                        <a ng-click="addAddress(firm)" class="btn btn-success pull-left">Add Address</a>
+                    </td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <a ng-click="deleteFirm(firm)" class="btn btn-small btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/angular.min.js"></script>
+<script src="js/firms.js"></script>
+</body>
+</html>

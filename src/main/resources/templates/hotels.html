@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <title>Firms</title>
+</head>
+<body ng-app="app">
+<div class="container" ng-controller="HotelsController">
+
+    <div class="panel panel-default">
+        <div class="listcontainer">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                <tr ng-repeat="hotel in hotels">
+                    <td>{{hotel.hotelId}}</td>
+                    <td>{{hotel.hotelName}}</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <a ng-click="deleteHotel(hotel)" class="btn btn-small btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/angular.min.js"></script>
+<script src="js/hotels.js"></script>
+</body>
+</html>
